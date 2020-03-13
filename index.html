@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Kelikamerat</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <div class="split left">
+            <div id="mainSelections">
+                <h3>Kamera valinnat</h3>
+                <div>
+                    <button type="button" class="selectionButtons" @click="showList" :class="{selected: useList}">Lista</button>
+                    <button type="button" class="selectionButtons" @click="showMunicipalities" :class="{selected: useMunicipality}">Kunnat</button>
+                    <button type="button" class="selectionButtons" @click="showRoads" :class="{selected: useRoad}">Tiet</button>
+                </div>
+                <hr>
+                <div v-show="useList">
+                    <p>Valitse listalta haluamasi kohde</p>
+                    <input list="stations" v-model:value="selectedStation">
+                    <datalist id="stations">
+                        <option v-for="item in cameraStationsMeta" :value="item.properties.roadStationId">{{item.properties.name}}</option>
+                    </datalist>
+                    <button type="button" name="button" @click.stop="showCameras">Näytä kamera(t)</button><br>
+                </div>
+                
+                <div v-show="useMunicipality">
+                    <p>Hae kunnan nimellä</p>
+                    <input type="text" v-model:value="municipalityToFind">
+                    <button type="button" name="button" @click.stop="findMunicipality">Hae kunnan kamerat</button>
+
+                    <div v-if="municipalities.length != 0" class="cameraSelection">
+                        <p>Valitse kamera listasta</p>
+                        <input list="municipalities" v-model:value="selectedStation">
+                        <datalist id="municipalities">
+                            <option v-for="item in municipalities" :value="item.properties.roadStationId">{{item.properties.name}}</option>
+                        </datalist>
+                        <button type="button" name="button" @click.stop="showCameras">Näytä kamera(t)</button><br>
+                    </div>
+                    <div v-else>
+                        <p>{{munState}}</p>
+                    </div>
+                </div>
+
+                <div v-show="useRoad">
+                    <p>Hae tien numerolla</p>
+                    <input type="number" min="0" v-model:value="roadToFind">
+                    <button type="button" name="button" @click.stop="findroad">Hae tien kamerat</button>
+
+                    <div v-if="roadPlaces.length != 0" class="cameraSelection">
+                        <p>Valitse kamera listasta</p>
+                        <input list="roadPlaces" v-model:value="selectedStation">
+                        <datalist id="roadPlaces">
+                            <option v-for="item in roadPlaces" :value="item.properties.roadStationId">{{item.properties.name}}</option>
+                        </datalist>
+                        <button type="button" name="button" @click.stop="showCameras">Näytä kamera(t)</button><br>
+                    </div>
+                    <div v-else>
+                        <p>{{roadState}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="split right">
+            <h3>{{summary}}</h3>
+
+            <div id="cameraSelection">
+                <span v-for="item in cameras" :class="{selected: item.imageUrl == image}" v-on:click="image = item.imageUrl">{{cameraName(item.presentationName, item.id)}}</span>
+                <span v-show="cameras != ''" v-on:click="image = ''">X</span>
+            </div>
+            <div v-show="image != ''">
+                <img :src="image" alt="Not found"></img>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

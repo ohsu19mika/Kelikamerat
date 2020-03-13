@@ -1,0 +1,63 @@
+#app {
+    margin-top: 30px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+span {
+    border: 1px solid #31475e;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+
+hr {
+    margin: 20px;
+}
+
+.selectionButtons {
+    font-size: 16px;
+    padding: 5px;
+}
+
+.selected {
+    background-color: green;
+    color: white;
+}
+
+
+.split {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 110px;
+    overflow-x: hidden;
+    padding-top: 0px;
+}
+  
+.left {
+    left: 3%;
+    width: 20%;
+    text-align: center;
+}
+
+.right {
+    right: 3%;
+    width: 72%;
+    padding-left: 2%;
+}
+
+.cameraSelection {
+    margin-top: 5px;
+}
+
+#cameraSelection {
+    margin-bottom: 20px; 
+}
+
+#mainSelections {
+    border: 1px solid black;
+    padding: 20px;
+}
