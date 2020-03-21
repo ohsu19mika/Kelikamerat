@@ -70,7 +70,8 @@ let app = new Vue({
                 });
                 this.camerasPlace = place[0];
                 this.selectedStation = '';
-                this.image = '';
+                //First camera is shown as default
+                this.image = this.cameras[0].imageUrl;
             }
             else alert('Valitse ensin kamera');        
             
