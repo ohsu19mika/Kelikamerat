@@ -71,8 +71,8 @@
             <h3>{{summary}}</h3>
 
             <div id="cameraSelection">
-                <span v-for="item in cameras" :class="{selected: item.imageUrl == image}" v-on:click="image = item.imageUrl, imageTime = item.measuredTime">{{cameraName(item.presentationName, item.id)}}</span>
-                <span v-show="cameras != ''" v-on:click="image = ''">X</span>
+                <button v-for="item in cameras" class="selectionButtons" :class="{selected: item.imageUrl == image}" v-on:click="image = item.imageUrl, imageTime = item.measuredTime">{{cameraName(item.presentationName, item.id)}}</button>
+                <button v-show="cameras != ''" class="selectionButtons" v-on:click="image = ''">X</button>
             </div>
             <div v-show="image != ''">
                 <p>{{imageTime}}</p>

@@ -6,12 +6,6 @@
 h1 {
     text-align: center;
 }
-span {
-    border: 1px solid #31475e;
-    padding: 10px;
-    background-color: white;
-    cursor: pointer;
-}
 
 hr {
     margin: 20px;
@@ -30,11 +24,11 @@ hr {
 
 
 .split {
-    height: 100%;
-    position: fixed;
+    /*height: 100%;*/
+    position: absolute;
     z-index: 1;
     top: 110px;
-    overflow-x: hidden;
+    overflow-x: auto;
     padding-top: 0px;
 }
   
