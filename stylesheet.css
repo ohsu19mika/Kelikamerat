@@ -20,6 +20,7 @@ hr {
 .selectionButtons {
     font-size: 16px;
     padding: 5px;
+    cursor: pointer;
 }
 
 .selected {

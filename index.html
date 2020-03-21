@@ -30,7 +30,7 @@
                 
                 <div v-show="useMunicipality">
                     <p>Hae kunnan nimellä</p>
-                    <input type="text" v-model:value="municipalityToFind">
+                    <input type="text" v-model:value="municipalityToFind" @keyup.enter="findMunicipality" ref="municipalityInput">
                     <button type="button" name="button" @click.stop="findMunicipality">Hae kunnan kamerat</button>
 
                     <div v-if="municipalities.length != 0" class="cameraSelection">
@@ -48,7 +48,7 @@
 
                 <div v-show="useRoad">
                     <p>Hae tien numerolla</p>
-                    <input type="number" min="0" v-model:value="roadToFind">
+                    <input type="number" min="0" v-model:value="roadToFind" @keyup.enter="findroad">
                     <button type="button" name="button" @click.stop="findroad">Hae tien kamerat</button>
 
                     <div v-if="roadPlaces.length != 0" class="cameraSelection">
@@ -71,10 +71,11 @@
             <h3>{{summary}}</h3>
 
             <div id="cameraSelection">
-                <span v-for="item in cameras" :class="{selected: item.imageUrl == image}" v-on:click="image = item.imageUrl">{{cameraName(item.presentationName, item.id)}}</span>
+                <span v-for="item in cameras" :class="{selected: item.imageUrl == image}" v-on:click="image = item.imageUrl, imageTime = item.measuredTime">{{cameraName(item.presentationName, item.id)}}</span>
                 <span v-show="cameras != ''" v-on:click="image = ''">X</span>
             </div>
             <div v-show="image != ''">
+                <p>{{imageTime}}</p>
                 <img :src="image" alt="Not found"></img>
             </div>
         </div>
