@@ -72,6 +72,7 @@ let app = new Vue({
                 this.selectedStation = '';
                 //First camera is shown as default
                 this.image = this.cameras[0].imageUrl;
+                this.imageTime = this.cameras[0].measuredTime;
             }
             else alert('Valitse ensin kamera');        
             
